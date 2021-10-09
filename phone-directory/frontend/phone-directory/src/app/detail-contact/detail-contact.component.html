@@ -47,4 +47,4 @@
 
 <!-- show line chart of views over the past 7 days -->
 <div class="title margin-left-cls" *ngIf="contact.views&&contact.views.length>1">Analytics (Past week)</div>
-<svg width="900" height="500"></svg>
+<svg [attr.height.px]="dimensions.height"[attr.height.px]="dimensions.width"></svg>

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddContactComponent } from '../add-contact/add-contact.component';
 import { UserService } from '../http/user.service';
@@ -20,6 +20,8 @@ export class DetailContactComponent implements OnInit {
   contactId;
   viewsByDay;
 
+  dimensions = { width: 900, height: 500 }
+
   //for view chart
   private margin = { top: 30, right: 20, bottom: 30, left: 150 };
   private width: number;
@@ -36,6 +38,7 @@ export class DetailContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(sessionStorage.getItem("directoryUser"));
+    this.setChartSize();
 
     if (this.user) {
       this.contactId = sessionStorage.getItem("viewContact"); //JSON.parse(
@@ -138,6 +141,14 @@ export class DetailContactComponent implements OnInit {
       .style('fill', 'none')
       .style('stroke', 'red')
       .style('stroke-width', '2px');
+  }
+
+  @HostListener("window:resize")
+  setChartSize(){
+    let outerEle = document.querySelector(".details-cls")[0];
+    this.dimensions.width = outerEle.width;
+    this.dimensions.height = outerEle.height;
+    console.log(outerEle.width)
   }
 
 }

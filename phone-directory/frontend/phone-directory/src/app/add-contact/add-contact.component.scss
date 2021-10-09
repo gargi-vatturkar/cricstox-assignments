@@ -1,0 +1,33 @@
+.add-wrapper{
+    .mr-2{
+        margin-right: 16px;
+    }
+
+    .picker{ text-align: center; cursor: pointer; }
+
+    .picker img{
+        margin: 4px 0 16px;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+    }
+
+    .btns-wrapper{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.full-width{
+    width: calc(100% - 24px);
+    resize: none;
+}
+
+.name-width{
+    width: calc(33% - 35px);
+}
+
+.half-width{
+    width: calc(50% - 34px);;
+}

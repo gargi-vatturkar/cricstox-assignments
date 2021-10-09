@@ -1,0 +1,48 @@
+.detail-wrapper{
+    display: flex;
+    gap: 80px;
+
+    img{
+        border-radius: 50%;
+        width: 250px;
+        height: 250px;
+    }
+
+    .name{
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 32px;
+    }
+
+    .number{
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 2px;
+    }
+
+    .type{
+        font-size: 12px;
+        margin-bottom: 16px;
+    }
+
+    .note-title{
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .edited{
+        font-size: 18px;
+        text-align: right;
+        font-weight: 500;
+        color: #607d8b;
+        margin-bottom: 4px;
+    }
+
+    .inner-detail{
+        width: calc(100% - 300px);
+    }
+}
+
+.margin-left-cls{
+    margin-left: 128px;
+}

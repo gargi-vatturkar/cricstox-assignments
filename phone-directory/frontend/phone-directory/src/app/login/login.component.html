@@ -1,0 +1,16 @@
+<div class="login-wrapper">
+    <div class="sub-title">Login to your phone directory</div>
+
+    <br>
+
+    <input type="text" placeholder="Enter your username" [(ngModel)]="username"><br>
+    <input [type]="pwdType" placeholder="Enter your password" [(ngModel)]="password">
+    <mat-icon (click)="changeVisibility()" *ngIf="pwdType=='password'">visibility</mat-icon>
+    <mat-icon (click)="changeVisibility()" *ngIf="pwdType=='text'">visibility_off</mat-icon>
+    <br>
+
+    <div class="btns-wrapper">
+        <button class="secondary-btn btn" (click)="onCancelClick()">Cancel</button>
+        <button class="primary-btn btn" (click)="onLoginClick()" [disabled]="checkLogin()">Login</button>
+    </div>
+</div>

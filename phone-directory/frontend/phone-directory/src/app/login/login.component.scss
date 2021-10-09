@@ -1,0 +1,17 @@
+.login-wrapper{
+    text-align: center;
+
+    .btns-wrapper{
+        margin-top: 8px;
+    }
+
+    input{ position: relative; width: calc(100% - 24px); }
+    
+    .mat-icon{ 
+        color: gray; 
+        cursor: pointer;  
+        position: absolute; 
+        margin-left: 84px;
+        margin-top: -50px;
+    }
+}

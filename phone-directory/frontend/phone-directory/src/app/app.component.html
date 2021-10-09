@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+  <mat-icon [routerLink]="['/']">contact_phone</mat-icon>
+  <div class="login" *ngIf="user">
+    <span>Hi, {{user.username}}!</span>
+    <span class="logout-cls" (click)="logout()">Logout</span>
+  </div>
+  <div class="login" (click)="login()" *ngIf="!user"> Login </div>
+</mat-toolbar>
+
+<!-- show directory if logged in, else show Login message -->
+
+<div class="cont" *ngIf="user">
+  <router-outlet></router-outlet>
+</div>
+
+<div class="wrapper-cls text-center-wrap" *ngIf="!user">
+  
+  <div style="text-align: center;">
+      <img class="login-img" src="/assets/login.png">
+      <div class="title">Login to see your contacts!</div>
+  </div>
+</div>

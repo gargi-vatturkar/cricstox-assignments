@@ -1,0 +1,57 @@
+<div class="wrapper-cls" *ngIf="user">
+    <div class="title">
+        {{user.username}}'s Contacts
+
+        <button (click)="addContact()" class="primary-btn btn">Add Contact</button>
+    </div>
+
+    <br><br>
+
+    <div class="title search-bar">
+        <input placeholder="Search by Name/Telephone.." [(ngModel)]="searchText">
+        <span class="search-icon" (click)="clearSearch()">
+            <mat-icon *ngIf="searchText.length==0">search</mat-icon>
+            <mat-icon *ngIf="searchText.length>0">cancel</mat-icon>
+        </span>
+
+        <mat-form-field appearance="outline">
+            <mat-select placeholder="Sort by" [(ngModel)]="sortOptions.selected">
+                <mat-option *ngFor="let opt of sortOptions.list" [value]="opt.id">
+                    {{opt.label}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <br><br>
+
+    <div class="list-cls" *ngIf="contactList.length>0">
+        <!-- use pipe for sorting and searching -->
+        <div class="card" *ngFor="let contact of contactList|search:searchText:sortOptions.selected" (click)="onContactClick(contact)">
+            <div class="thumbnail">
+                <img [src]="contact.photoUrl">
+            </div>
+
+            <!-- show full name -->
+            <div class="name sub-title">
+                {{contact.first_name + ' ' + contact.middle_name + ' ' + contact.last_name}}
+            </div>
+
+            <!-- show date added -->
+            <div class="date-cls">
+                <span>{{contact.date_added | date}}</span>
+                <mat-icon (click)="onClickDelete(contact._id);$event.stopPropagation()">delete</mat-icon>
+            </div>
+        </div>
+    </div>
+
+    <!-- show message if user has no contacts -->
+    <div class="wrapper-cls text-center-wrap" *ngIf="contactList.length==0">
+        <div style="text-align: center;">
+            <br><br>
+            <mat-icon class="not-found-icon">search</mat-icon>
+            <div class="title">No contacts found!</div>
+        </div>
+    </div>
+
+</div>

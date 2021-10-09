@@ -1,0 +1,146 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@include mat-core();
+
+$my-app-primary: mat-palette($mat-blue-grey);
+$my-app-accent:  mat-palette($mat-pink);
+$my-app-warn:    mat-palette($mat-deep-orange);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+@include angular-material-theme($my-app-theme);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-toolbar{
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    z-index: 100;
+
+    .mat-icon{ cursor: pointer; }
+}
+
+.sub-title{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.title{
+    font-size: 22px;
+    font-weight: bolder;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .mat-icon{ color: gray; cursor: pointer; }
+}
+
+.btn{
+    height: 36px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    border: none;
+    font-size: 16px;
+    margin: 0 8px;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: #607d8b;
+    color: #fff;
+    border: 1px solid #607d8b;
+}
+
+.primary-btn{
+    border: 1px solid #e9163e;
+    background-color: #e91e63;
+    color: #fff;
+}
+
+.btn:disabled{
+    background-color: lightgray;
+    border: 1px solid lightgray;
+    color: gray;
+}
+
+.secondary-btn{
+    background-color: #fff;
+    border: 1px solid #000;
+}
+
+.wrapper-cls{
+    padding: 48px 128px;
+}
+
+input{
+    height: 36px;
+    padding: 4px 12px;
+    border: 1px solid lightgray;
+    margin-bottom: 16px;
+    border-radius: 4px;
+}
+
+textarea{
+    padding: 4px 12px;
+    border: 1px solid lightgray;
+    margin-bottom: 16px;
+    border-radius: 4px;
+}
+
+input:focus, textarea:focus{ outline: none; }
+
+.text-center-wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 150px;
+}
+
+.login-img{
+    width: 200px;
+    margin-bottom: 24px;
+}
+
+.mat-select{ font-size: 14px!important; }
+
+.mat-form-field-infix { border-top: 0!important;}
+
+.mat-form-field-appearance-outline .mat-form-field-infix { padding: 14px 0!important;}
+
+.mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+    transform: translateY(0%)!important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-wrapper {
+    margin: 0!important;
+    padding-bottom: 0!important;
+}
+
+.error-cls>span{
+    color: red;
+    font-weight: 500;
+}
+
+.search-bar .mat-form-field {
+    width: 300px!important;
+}
+
+.breadcrumb-wrapper{
+    font-weight: 500;
+    font-size: 16px;
+    .previous{
+        color: #e9163e;
+        cursor: pointer;
+    }
+
+    .connector{
+        margin: 0 8px;
+    }
+}
+
+.spinner-cont{
+    width: 600px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

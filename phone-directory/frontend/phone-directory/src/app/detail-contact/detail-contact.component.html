@@ -1,0 +1,50 @@
+<div class="wrapper-cls details-cls" *ngIf="user&&contact">
+
+    <!-- breadcrumb to navigate back to directory list -->
+    <div class="title">
+        <div class="breadcrumb-wrapper">
+            <span class="previous" [routerLink]="['/']">All Contacts</span>
+            <span class="connector">></span>
+            <span class="current">{{contact.first_name}}</span>
+        </div>
+
+        <mat-icon (click)="onClickEdit(contact)">edit</mat-icon>
+    </div>
+
+    <br><br>
+
+    <div class="detail-wrapper">
+        <!-- show thumbnail and fullname -->
+        <img [src]="contact.photoUrl" alt="user-photo" class="details-img">
+
+        <div class="inner-detail">
+            <div class="name">
+                {{contact.first_name + " " + contact.middle_name + " " + contact.last_name}}
+            </div>
+
+            <!-- show details - email, mobile, landline whichever present -->
+            <div *ngFor="let det of contact.detailList">
+                <div class="number">{{det.value}}</div>
+                <div class="type">{{det.title}}</div>
+            </div>
+
+            <!-- show Notes -->
+            <div *ngIf="contact.notes">
+                <div class="number">Notes:</div>
+                <div class="notes">{{contact.notes}}</div>
+            </div>
+
+            <!-- show date added/ edited date and total views till today -->
+            <div class="edited" *ngIf="contact.date_edited">Last Edited: {{contact.date_edited | date}}</div>
+            <div class="edited" *ngIf="!contact.date_edited">Contact Added: {{contact.date_added | date}}</div>
+            <div class="edited">Total Views: {{contact.total_views==0 ? 1 : contact.total_views}}</div>
+        </div>
+
+    </div>
+</div>
+
+<br>
+
+<!-- show line chart of views over the past 7 days -->
+<div class="title margin-left-cls" *ngIf="contact.views&&contact.views.length>1">Analytics (Past week)</div>
+<svg width="900" height="500"></svg>

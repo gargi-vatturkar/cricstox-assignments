@@ -7,7 +7,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
 
-  base = "http://localhost:3001/directory";
+  //base = "http://localhost:3001/directory";
+  base = "http://directory-env-1.eba-bgz8fhkv.us-east-2.elasticbeanstalk.com/directory";
   user = { username: "", password: "", id: "" }
 
   constructor(private http: HttpClient) { }

@@ -71,9 +71,12 @@ export class AddContactComponent implements OnInit {
 
       this.service.addContact(this.user["id"], contact, this.contactForm.get("photo").value).
         subscribe(res => {
+          this.showLoader = false;
           if (res['message'] && res['message'].indexOf("succes") > -1){
-            this.showLoader = false;
             this.dialogRef.close();
+          }
+          else{
+            this.error = {show: true, message: "Problem saving Contact!" }
           }
         });
     }
@@ -95,10 +98,13 @@ export class AddContactComponent implements OnInit {
 
       this.service.updateContact(this.user["id"], this.data.contact["_id"], contact, this.contactForm.get("photo").value).
         subscribe(res => {
+          this.showLoader = false;
           //send data to contact details page and update immediately
           if (res['message'] && res['message'].indexOf("succes") > -1){
-            this.showLoader = false;
             this.dialogRef.close({ contact: contact, url: res["updatedPhotUrl"] });
+          }
+          else{
+            this.error = {show: true, message: "Problem saving Contact!" }
           }
         });
     }

@@ -16,6 +16,8 @@ export class ListContactComponent implements OnInit {
   contactList = [];
   searchText = "";
 
+  showLoader = false;
+
   //sort options
   sortOptions = {
     selected: "date_old", list: [
@@ -31,11 +33,14 @@ export class ListContactComponent implements OnInit {
 
   ngOnInit(): void {
     //get user from session storage
+    this.showLoader = true;
     this.user = JSON.parse(sessionStorage.getItem("directoryUser"));
 
     if (this.user)
     //get all contacts by user id
       this.service.getContacts(this.user["id"]).subscribe(res => {
+        this.showLoader = false;
+
         if (res.message.indexOf("succes") > -1) {
 
           //default sorting by oldest to newest

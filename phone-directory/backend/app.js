@@ -31,7 +31,7 @@ server.on("listening", onListening);
 server.listen(port);
 
 //mongodb connection
-mongoose.connect("mongodb+srv://gargi:xKniL0jACNYYPXlv@cluster0.gk0v4.mongodb.net/users?retryWrites=true&w=majority")
+mongoose.connect("mongoconnectionstringgoeshere")
   .then(() => console.log("DB Connected"))
   .catch((err) => {
     console.log(err)
@@ -39,7 +39,7 @@ mongoose.connect("mongodb+srv://gargi:xKniL0jACNYYPXlv@cluster0.gk0v4.mongodb.ne
   });
 
 //route all requests with images to backend/images folder
-app.use("/images/", express.static(path.join(__dirname, '../backend/images')));
+app.use("/images/", express.static(path.join(__dirname, 'images'))); //backend/images for local
 
 //parse incoming request body
 app.use(bodyParser.json());

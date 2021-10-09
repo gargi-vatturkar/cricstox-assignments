@@ -41,6 +41,8 @@ router.post("/login", (req, res, next) => {
       "message": "User logged in succesfully!",
       "users": response
     });
+  }).catch( err => {
+    res.status(400).json({"message": "User not found!"});
   });
 });
 
@@ -51,6 +53,8 @@ router.get("/get/:id", (req, res, next) => {
       "message": "User contacts found succesfully!",
       "contacts": response
     });
+  }).catch( err => {
+    res.status(400).json({"message": "No User found with this ID!"});
   });
 });
 
@@ -77,6 +81,8 @@ router.get("/get-contact/:userid/:id", (req, res, next) => {
           "message": "Contact fetched from directory succesfully!",
           "contact": resp
         });
+      }).catch( err => {
+        res.status(400).json({"message": "Contact fetch failed!"});
       });
     }
     else {
@@ -94,6 +100,8 @@ router.get("/get-contact/:userid/:id", (req, res, next) => {
             "message": "Contact fetched from directory succesfully!",
             "contact": resp
           });
+        }).catch( err => {
+          res.status(400).json({"message": "Contact fetch failed!"});
         });
       }
       else{
@@ -106,11 +114,15 @@ router.get("/get-contact/:userid/:id", (req, res, next) => {
           "message": "Contact fetched from directory succesfully!",
           "contact": resp
         });
+      }).catch( err => {
+        res.status(400).json({"message": "Contact fetch failed!"});
       });
       }
 
     }
-  });
+  }).catch( err => {
+    res.status(400).json({"message": "No User/Contact found with this ID!"});
+  });;
 });
 
 //update contact
@@ -138,6 +150,8 @@ router.put("/update-contact/:userid/:id", multer({ storage: storage }).single("p
         "message": "Contact updated in directory succesfully!",
         "updatedPhotUrl": reqBody.photoUrl
       });
+    }).catch( err => {
+      res.status(400).json({"message": "Contact updating failed!"});
     });
 });
 
@@ -157,6 +171,8 @@ router.post("/add", multer({ storage: storage }).single("photo"), (req, res, nex
     return res.status(200).json({
       "message": "Contact added in directory succesfully!"
     });
+  }).catch( err => {
+    res.status(400).json({"message": "Contact add failed!"});
   });
 
 });
@@ -167,6 +183,8 @@ router.delete("/delete-contact/:userid/:id", (req, res, next) => {
     return res.status(200).json({
       "message": "Contact deleted from directory succesfully!"
     });
+  }).catch( err => {
+    res.status(400).json({"message": "Contact delete failed!"});
   });
 
 });

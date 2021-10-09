@@ -25,33 +25,40 @@
 
     <br><br>
 
-    <div class="list-cls" *ngIf="contactList.length>0">
-        <!-- use pipe for sorting and searching -->
-        <div class="card" *ngFor="let contact of contactList|search:searchText:sortOptions.selected" (click)="onContactClick(contact)">
-            <div class="thumbnail">
-                <img [src]="contact.photoUrl">
-            </div>
+    <div *ngIf="!showLoader">
+        <div class="list-cls" *ngIf="contactList.length>0">
+            <!-- use pipe for sorting and searching -->
+            <div class="card" *ngFor="let contact of contactList|search:searchText:sortOptions.selected"
+                (click)="onContactClick(contact)">
+                <div class="thumbnail">
+                    <img [src]="contact.photoUrl">
+                </div>
 
-            <!-- show full name -->
-            <div class="name sub-title">
-                {{contact.first_name + ' ' + contact.middle_name + ' ' + contact.last_name}}
-            </div>
+                <!-- show full name -->
+                <div class="name sub-title">
+                    {{contact.first_name + ' ' + contact.middle_name + ' ' + contact.last_name}}
+                </div>
 
-            <!-- show date added -->
-            <div class="date-cls">
-                <span>{{contact.date_added | date}}</span>
-                <mat-icon (click)="onClickDelete(contact._id);$event.stopPropagation()">delete</mat-icon>
+                <!-- show date added -->
+                <div class="date-cls">
+                    <span>{{contact.date_added | date}}</span>
+                    <mat-icon (click)="onClickDelete(contact._id);$event.stopPropagation()">delete</mat-icon>
+                </div>
+            </div>
+        </div>
+
+        <!-- show message if user has no contacts -->
+        <div class="wrapper-cls text-center-wrap" *ngIf="contactList.length==0">
+            <div style="text-align: center;">
+                <br><br>
+                <mat-icon class="not-found-icon">search</mat-icon>
+                <div class="title">No contacts found!</div>
             </div>
         </div>
     </div>
 
-    <!-- show message if user has no contacts -->
-    <div class="wrapper-cls text-center-wrap" *ngIf="contactList.length==0">
-        <div style="text-align: center;">
-            <br><br>
-            <mat-icon class="not-found-icon">search</mat-icon>
-            <div class="title">No contacts found!</div>
-        </div>
+    <div *ngIf="showLoader" class="list-loader-cont">
+        <mat-spinner></mat-spinner>
     </div>
-
+    
 </div>

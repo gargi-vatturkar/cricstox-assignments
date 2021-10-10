@@ -1,4 +1,4 @@
-# cricstox-assignments
+# assignments
 Assignment 1: Armstrong Numbers
 VanillaJs+HTML+CSS application ehich number as input and checks whether it is an Armstrong number or not. 
 If the inputted number is not an armstrong number, it should calculate the next lowest and highest armstrong number from the input number. 

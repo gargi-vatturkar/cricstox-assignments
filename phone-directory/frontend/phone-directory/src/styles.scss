@@ -69,6 +69,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .wrapper-cls{
     padding: 48px 128px;
+    width: calc(100% - 256px);
+
+    @media(max-width: 769px){
+        padding: 48px 36px!important;
+        width: calc(100% - 966px);
+    }
 }
 
 input{

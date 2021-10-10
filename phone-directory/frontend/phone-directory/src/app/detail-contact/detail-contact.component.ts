@@ -38,7 +38,6 @@ export class DetailContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(sessionStorage.getItem("directoryUser"));
-    this.setChartSize();
 
     if (this.user) {
       this.contactId = sessionStorage.getItem("viewContact"); //JSON.parse(
@@ -55,6 +54,10 @@ export class DetailContactComponent implements OnInit {
     }
   }
 
+  ngAfterViewInit() {
+    //this.setChartSize();
+  }
+
   populateDetailList() {
     this.contact.detailList = [];
     if (this.contact.mobile)
@@ -68,16 +71,14 @@ export class DetailContactComponent implements OnInit {
       element["formatted"] = new Date(2021, element["viewed_date"].split("-")[1], element["viewed_date"].split("-")[0], 0, 0, 0, 0);
     });
 
-    this.contact.views.sort((a, b) => {
-      if(a["viewed_date"] > b["viewed_date"]) return -1;
-      else if(a["viewed_date"] < b["viewed_date"]) return 1;
+    this.contact.views = this.contact.views.sort((a, b) => {
+      if (a["formatted"] > b["formatted"]) return 1;
+      else if (a["formatted"] < b["formatted"]) return -1;
       else return 0;
     });
 
     if (this.contact.views.length > 1) {
-      this.buildSvg();
-      this.addXandYAxis();
-      this.drawLineAndPath();
+      this.setChartSize();
     }
     else
       this.svg = d3.selectAll("svg").style("display", "none");
@@ -110,7 +111,8 @@ export class DetailContactComponent implements OnInit {
   private buildSvg() {
     this.svg = d3.selectAll("svg") // svg element from html
       .append('g')   // appends 'g' element for graph design
-      .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
+      .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')')
+      .attr('width', this.dimensions.width);
   }
 
   private addXandYAxis() {
@@ -126,6 +128,7 @@ export class DetailContactComponent implements OnInit {
     // Configure the Y Axis
     this.svg.append('g')
       .attr('class', 'axis axis--y')
+      .attr('width', this.dimensions.width)
       .call(d3Axis.axisLeft(this.y));
   }
 
@@ -144,11 +147,21 @@ export class DetailContactComponent implements OnInit {
   }
 
   @HostListener("window:resize")
-  setChartSize(){
-    let outerEle = document.querySelector(".details-cls")[0];
-    this.dimensions.width = outerEle.width;
-    this.dimensions.height = outerEle.height;
-    console.log(outerEle.width)
+  setChartSize() {
+    let outerEle = document.querySelector(".details-cls");
+    this.dimensions.width = outerEle.clientWidth - 96;
+    console.log(this.dimensions)
+    // this.dimensions.height = 500;
+
+    if (document.documentElement.clientWidth <= 768)
+      this.margin.left = 56;
+    else
+      this.margin.left = 128;
+
+    d3.selectAll("svg > *").remove();
+    this.buildSvg();
+    this.addXandYAxis();
+    this.drawLineAndPath();
   }
 
 }

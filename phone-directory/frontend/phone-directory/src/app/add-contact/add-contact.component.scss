@@ -31,3 +31,8 @@
 .half-width{
     width: calc(50% - 34px);;
 }
+
+@media(max-width: 769px){
+    .inp-cls{ display: block; }
+    .name-width{ width: 100%!important; box-sizing: border-box; }
+}

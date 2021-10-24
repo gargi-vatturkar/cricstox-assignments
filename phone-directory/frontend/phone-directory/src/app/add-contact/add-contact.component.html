@@ -10,9 +10,11 @@
         <!-- invisible file picker to be triggered when thumbnail is clicked -->
         <input type="file" hidden #userImg (change)="onImgSelected($event)">
 
-        <input type="text" placeholder="First Name*" formControlName="fName" class="mr-2 name-width">
-        <input type="text" placeholder="Middle Name" formControlName="mName" class="mr-2 name-width">
-        <input type="text" placeholder="Last Name*" formControlName="lName" class="name-width">
+        <div class="inp-cls">
+            <input type="text" placeholder="First Name*" formControlName="fName" class="mr-2 name-width">
+            <input type="text" placeholder="Middle Name" formControlName="mName" class="mr-2 name-width">
+            <input type="text" placeholder="Last Name*" formControlName="lName" class="name-width">
+        </div>
 
         <br>
 

@@ -30,13 +30,16 @@
             <!-- use pipe for sorting and searching -->
             <div class="card" *ngFor="let contact of contactList|search:searchText:sortOptions.selected"
                 (click)="onContactClick(contact)">
-                <div class="thumbnail">
-                    <img [src]="contact.photoUrl">
-                </div>
 
-                <!-- show full name -->
-                <div class="name sub-title">
-                    {{contact.first_name + ' ' + contact.middle_name + ' ' + contact.last_name}}
+                <div class="disp-flex">
+                    <div class="thumbnail">
+                        <img [src]="contact.photoUrl">
+                    </div>
+
+                    <!-- show full name -->
+                    <div class="name sub-title">
+                        {{contact.first_name + ' ' + contact.middle_name + ' ' + contact.last_name}}
+                    </div>
                 </div>
 
                 <!-- show date added -->
@@ -60,5 +63,5 @@
     <div *ngIf="showLoader" class="list-loader-cont">
         <mat-spinner></mat-spinner>
     </div>
-    
+
 </div>

@@ -45,8 +45,16 @@
 
 .margin-left-cls{
     margin-left: 128px;
+}
 
-    @media(max-width: 769px){
-        margin-left: 36px;
+@media(max-width: 769px){
+    .detail-wrapper{ display: block!important; text-align: center; }
+
+    .margin-left-cls{ margin-left: 36px!important; }
+
+    .inner-detail{ margin-top: 36px; width: 100%!important; text-align: left!important; }
+
+    .details-cls{
+        width: calc(100% - -90px);
     }
 }

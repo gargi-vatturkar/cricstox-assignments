@@ -29,6 +29,11 @@
     .name{
         width: 75vw;
     }
+
+    @media(max-width: 540px){
+        height: 100px;
+        display: block;
+    }
 }
 
 .card:hover{
@@ -41,6 +46,10 @@
 
 .wrapper-cls .title .btn{
     margin-right: 0!important;
+
+    @media(max-width: 360px){
+        height: 48px;
+    }
 }
 
 .not-found-icon.mat-icon{
@@ -81,4 +90,9 @@
     justify-content: center;
     display: flex;
     width: 100%;
+}
+
+.disp-flex{
+    display: flex;
+    align-items: center;
 }

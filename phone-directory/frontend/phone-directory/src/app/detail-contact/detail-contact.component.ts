@@ -103,6 +103,7 @@ export class DetailContactComponent implements OnInit {
         this.contact.photoUrl = res.url;
         this.populateDetailList();
 
+        this.setChartSize();
       }
 
     });
@@ -157,6 +158,10 @@ export class DetailContactComponent implements OnInit {
       this.margin.left = 56;
     else
       this.margin.left = 128;
+
+    var svgElement = document.getElementById("svg");
+
+    svgElement.setAttribute("width", String(this.dimensions.width)); 
 
     d3.selectAll("svg > *").remove();
     this.buildSvg();
